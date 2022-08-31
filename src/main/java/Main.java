@@ -22,15 +22,28 @@ public class Main {
             }
         }
 
-        ArrayList allValues = file.getArrayList(stringType);
-        file.setFilename(filenames.get(0));
+        ArrayList listOfArrays = getArrayList(stringType);
+        String finalFileName = filenames.get(0);
 
         for (int i = 1; i < filenames.size(); i++) {
             if (file.fileExists(filenames.get(i))) {
-                allValues.addAll(file.openAndReadFile(filenames.get(i), file.getArrayList(stringType)));
+                ArrayList tempList = new ArrayList();
+                listOfArrays.add(file.openAndReadFile(filenames.get(i), tempList));
             }
         }
 
         file.sortByOrder(ascendingOrder);
+    }
+
+    public static ArrayList getArrayList(boolean stringType) {
+        ArrayList lines = null;
+
+        if (stringType) {
+            lines = new ArrayList<String[]>();
+        } else {
+            lines = new ArrayList<Integer[]>();
+        }
+
+        return lines;
     }
 }

@@ -1,19 +1,10 @@
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class WorkFile {
-
-    private String filename;
 
     public boolean fileExists(String fileName) {
         File file = new File(fileName);
@@ -23,18 +14,6 @@ public class WorkFile {
         }
 
         return true;
-    }
-
-    public ArrayList getArrayList(boolean stringType) {
-        ArrayList lines = null;
-
-        if (stringType) {
-            lines = new ArrayList<String>();
-        } else {
-            lines = new ArrayList<Integer>();
-        }
-
-        return lines;
     }
 
     public ArrayList openAndReadFile(String filename, ArrayList lines) {
@@ -55,5 +34,9 @@ public class WorkFile {
 
     public void sortByOrder(boolean ascendingOrder) {
 
+    }
+
+    public void createNewFile(ArrayList finalList) {
+        //create new file with sorted parameters
     }
 }
