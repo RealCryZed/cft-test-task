@@ -41,7 +41,8 @@ public class WorkFile {
             String line = null;
 
             while ((line = bufferedReader.readLine()) != null) {
-                lines.add(line);
+                if (line.contains(" ")) System.err.println("Line is invalid due to containing space");
+                else lines.add(line);
             }
             bufferedReader.close();
         } catch (IOException e) {
