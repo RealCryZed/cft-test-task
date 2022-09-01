@@ -45,19 +45,19 @@ public class Main {
     }
 
     public static void stringData(ArrayList<String> filenames, boolean ascendingOrder) {
-//        WorkFile file = new WorkFile();
-//
-//        ArrayList listOfArrays = createNewArrayListByType(stringType, true);
-//        String finalFileName = filenames.get(0);
-//
-//        for (int i = 1; i < filenames.size(); i++) {
-//            if (file.fileExists(filenames.get(i))) {
-//                ArrayList tempList = createNewArrayListByType(stringType, false);
-//                listOfArrays.add(file.openAndReadFile(filenames.get(i), tempList));
-//            }
-//        }
-//
-//        ArrayList finalList = file.sortByOrder(listOfArrays, ascendingOrder);
-//        file.createNewFile(finalFileName, finalList);
+        WorkFile file = new WorkFile();
+
+        ArrayList<String[]> listOfArrays = new ArrayList<>();
+        String finalFileName = filenames.get(0);
+
+        for (int i = 1; i < filenames.size(); i++) {
+            if (file.fileExists(filenames.get(i))) {
+                listOfArrays.add(file.openAndReadFileStringData(filenames.get(i)));
+            }
+        }
+
+        String[] finalList = file.sortByOrderStringData(listOfArrays, ascendingOrder);
+
+        file.createNewFile(finalFileName, finalList);
     }
 }

@@ -31,8 +31,43 @@ public class WorkFile {
         return lines.toArray(new Integer[0]);
     }
 
+    public String[] openAndReadFileStringData(String filename) {
+        ArrayList<String> lines = new ArrayList<>();
+        try {
+            FileReader fileReader = new FileReader(filename);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line = null;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                lines.add(line);
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+
+        }
+
+        return lines.toArray(new String[0]);
+    }
+
     public Integer[] sortByOrder(ArrayList<Integer[]> list, boolean ascendingOrder) {
         Integer[] array = null;
+        for (int i = 0; i < list.size()-1; i++) {
+            if (i == 0) {
+                array = Sort.mergeSort(list.get(i), list.get(i + 1));
+            } else {
+                array = Sort.mergeSort(array, list.get(i+1));
+            }
+        }
+
+        if (!ascendingOrder) {
+            array = Sort.sortByDescendingOrder(array);
+        }
+
+        return array;
+    }
+
+    public String[] sortByOrderStringData(ArrayList<String[]> list, boolean ascendingOrder) {
+        String[] array = null;
         for (int i = 0; i < list.size()-1; i++) {
             if (i == 0) {
                 array = Sort.mergeSort(list.get(i), list.get(i + 1));
@@ -62,6 +97,15 @@ public class WorkFile {
     }
 
     public void createNewFile(String filename, String[] finalList) {
-
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(filename);
+            for (String str : finalList) {
+                writer.write(str + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
