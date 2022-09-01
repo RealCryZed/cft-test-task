@@ -20,14 +20,31 @@ public class Main {
             }
         }
 
-        if (stringType) {
-            stringData(filenames, ascendingOrder);
-        } else {
-            intData(filenames, ascendingOrder);
-        }
+//        if (filenames.size() == 2) {
+//            oneFileHandling(filenames, ascendingOrder, stringType);
+//        } else {
+            if (stringType) {
+                stringData(filenames, ascendingOrder, filenames.size());
+            } else {
+                intData(filenames, ascendingOrder, filenames.size());
+            }
+//        }
     }
 
-    public static void intData(ArrayList<String> filenames, boolean ascendingOrder) {
+//    public static void oneFileHandling(ArrayList<String> filenames, boolean ascendingOrder,
+//                                       boolean stringType) {
+//        WorkFile file = new WorkFile();
+//
+//        String[] values = null;
+//
+//        if (file.fileExists(filenames.get(1))) {
+//            values = file.openAndReadFileStringData(filenames.get(1));
+//        }
+//
+//        file.createNewFile(filenames.get(0), values);
+//    }
+
+    public static void intData(ArrayList<String> filenames, boolean ascendingOrder, int fileNumber) {
         WorkFile file = new WorkFile();
 
         ArrayList<Integer[]> listOfArrays = new ArrayList<>();
@@ -39,12 +56,19 @@ public class Main {
             }
         }
 
-        Integer[] finalList = file.sortByOrder(listOfArrays, ascendingOrder);
+        Integer[] finalList = null;
+
+        if (fileNumber == 2) {
+            if (ascendingOrder) finalList = listOfArrays.get(0);
+            else finalList = Sort.sortByDescendingOrder(listOfArrays.get(0));
+        } else {
+            finalList = file.sortByOrder(listOfArrays, ascendingOrder);
+        }
 
         file.createNewFile(finalFileName, finalList);
     }
 
-    public static void stringData(ArrayList<String> filenames, boolean ascendingOrder) {
+    public static void stringData(ArrayList<String> filenames, boolean ascendingOrder, int fileNumber) {
         WorkFile file = new WorkFile();
 
         ArrayList<String[]> listOfArrays = new ArrayList<>();
@@ -56,7 +80,14 @@ public class Main {
             }
         }
 
-        String[] finalList = file.sortByOrderStringData(listOfArrays, ascendingOrder);
+        String[] finalList = null;
+
+        if (fileNumber == 2) {
+            if (ascendingOrder) finalList = listOfArrays.get(0);
+            else finalList = Sort.sortByDescendingOrder(listOfArrays.get(0));
+        } else {
+            finalList = file.sortByOrderStringData(listOfArrays, ascendingOrder);
+        }
 
         file.createNewFile(finalFileName, finalList);
     }

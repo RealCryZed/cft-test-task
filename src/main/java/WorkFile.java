@@ -111,7 +111,7 @@ public class WorkFile {
         }
     }
 
-    public boolean isParsable(String input) {
+    private boolean isParsable(String input) {
         try {
             Integer.parseInt(input);
             return true;
