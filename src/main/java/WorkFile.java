@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class WorkFile {
@@ -35,20 +32,36 @@ public class WorkFile {
     }
 
     public Integer[] sortByOrder(ArrayList<Integer[]> list, boolean ascendingOrder) {
-
         Integer[] array = null;
         for (int i = 0; i < list.size()-1; i++) {
             if (i == 0) {
-                array = MergeSort.mergeSort(list.get(i), list.get(i + 1));
+                array = Sort.mergeSort(list.get(i), list.get(i + 1));
             } else {
-                array = MergeSort.mergeSort(array, list.get(i+1));
+                array = Sort.mergeSort(array, list.get(i+1));
             }
+        }
+
+        if (!ascendingOrder) {
+            array = Sort.sortByDescendingOrder(array);
         }
 
         return array;
     }
 
     public void createNewFile(String filename, Integer[] finalList) {
-        //create new file with sorted parameters
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(filename);
+            for (Integer integer : finalList) {
+                writer.write(integer + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createNewFile(String filename, String[] finalList) {
+
     }
 }

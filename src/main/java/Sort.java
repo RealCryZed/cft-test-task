@@ -1,4 +1,4 @@
-public class MergeSort {
+public class Sort {
 
     public static Integer[] mergeSort(Integer[] firstArray, Integer[] secondArray) {
 
@@ -27,5 +27,15 @@ public class MergeSort {
         }
 
         return merged;
+    }
+
+    public static Integer[] sortByDescendingOrder(Integer[] array) {
+        Integer[] sortedArray = new Integer[array.length];
+
+        for (int i = array.length - 1; i >= 0; i--) {
+            sortedArray[array.length - i - 1] = array[i];
+        }
+
+        return sortedArray;
     }
 }

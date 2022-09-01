@@ -27,26 +27,6 @@ public class Main {
         }
     }
 
-    public static ArrayList createNewArrayListByType(boolean stringType, boolean arrayListOfArrays) {
-        ArrayList lines = null;
-
-        if (arrayListOfArrays) {
-            if (stringType) {
-                lines = new ArrayList<String[]>();
-            } else {
-                lines = new ArrayList<Integer[]>();
-            }
-        } else {
-            if (stringType) {
-                lines = new ArrayList<String>();
-            } else {
-                lines = new ArrayList<Integer>();
-            }
-        }
-
-        return lines;
-    }
-
     public static void intData(ArrayList<String> filenames, boolean ascendingOrder) {
         WorkFile file = new WorkFile();
 
@@ -60,10 +40,6 @@ public class Main {
         }
 
         Integer[] finalList = file.sortByOrder(listOfArrays, ascendingOrder);
-
-//        for (int i = 0; i < finalList.length; i++) {
-//            System.out.println(finalList[i]);
-//        }
 
         file.createNewFile(finalFileName, finalList);
     }
