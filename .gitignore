@@ -82,3 +82,8 @@ nb-configuration.xml
 ## OS X
 ##############################
 .DS_Store
+
+in.txt
+in2.txt
+in3.txt
+out.txt
