@@ -1,11 +1,11 @@
 public class MergeSort {
 
-    public static int[] mergeSort(int[] firstArray, int[] secondArray) {
+    public static Integer[] mergeSort(Integer[] firstArray, Integer[] secondArray) {
 
         int firstArrayLength = firstArray.length;
         int secondArrayLength = secondArray.length;
 
-        int[] merged = new int[firstArrayLength + secondArrayLength];
+        Integer[] merged = new Integer[firstArrayLength + secondArrayLength];
 
         int firstArrayPosition, secondArrayPosition, mergedPosition;
         firstArrayPosition = secondArrayPosition = mergedPosition = 0;

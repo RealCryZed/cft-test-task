@@ -16,27 +16,39 @@ public class WorkFile {
         return true;
     }
 
-    public ArrayList openAndReadFile(String filename, ArrayList lines) {
+    public Integer[] openAndReadFile(String filename) {
+        ArrayList<Integer> lines = new ArrayList<>();
         try {
             FileReader fileReader = new FileReader(filename);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line = null;
+
             while ((line = bufferedReader.readLine()) != null) {
-                lines.add(line);
+                lines.add(Integer.parseInt(line));
             }
             bufferedReader.close();
         } catch (IOException e) {
 
         }
 
-        return lines;
+        return lines.toArray(new Integer[0]);
     }
 
-    public void sortByOrder(boolean ascendingOrder) {
+    public Integer[] sortByOrder(ArrayList<Integer[]> list, boolean ascendingOrder) {
 
+        Integer[] array = null;
+        for (int i = 0; i < list.size()-1; i++) {
+            if (i == 0) {
+                array = MergeSort.mergeSort(list.get(i), list.get(i + 1));
+            } else {
+                array = MergeSort.mergeSort(array, list.get(i+1));
+            }
+        }
+
+        return array;
     }
 
-    public void createNewFile(ArrayList finalList) {
+    public void createNewFile(String filename, Integer[] finalList) {
         //create new file with sorted parameters
     }
 }
