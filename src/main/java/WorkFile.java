@@ -21,7 +21,9 @@ public class WorkFile {
             String line = null;
 
             while ((line = bufferedReader.readLine()) != null) {
-                lines.add(Integer.parseInt(line));
+                if (isParsable(line)) {
+                    lines.add(Integer.parseInt(line));
+                } else System.err.println("Line contains type of data that's not Integer");
             }
             bufferedReader.close();
         } catch (IOException e) {
@@ -106,6 +108,15 @@ public class WorkFile {
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public boolean isParsable(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (final NumberFormatException e) {
+            return false;
         }
     }
 }
