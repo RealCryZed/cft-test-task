@@ -5,6 +5,8 @@ import java.util.logging.Level;
 public class Main {
 
     public static void main(String[] args) {
+        MyLogger logger = MyLogger.getLogger();
+
         boolean ascendingOrder = true;
         boolean stringType = true;
 
@@ -20,29 +22,21 @@ public class Main {
             }
         }
 
-//        if (filenames.size() == 2) {
-//            oneFileHandling(filenames, ascendingOrder, stringType);
-//        } else {
-            if (stringType) {
-                stringData(filenames, ascendingOrder, filenames.size());
-            } else {
-                intData(filenames, ascendingOrder, filenames.size());
-            }
-//        }
-    }
+        logger.log(Level.INFO, "Type: " + stringType + ", ascendingOrder = " + ascendingOrder);
 
-//    public static void oneFileHandling(ArrayList<String> filenames, boolean ascendingOrder,
-//                                       boolean stringType) {
-//        WorkFile file = new WorkFile();
-//
-//        String[] values = null;
-//
-//        if (file.fileExists(filenames.get(1))) {
-//            values = file.openAndReadFileStringData(filenames.get(1));
-//        }
-//
-//        file.createNewFile(filenames.get(0), values);
-//    }
+        if (stringType) {
+            stringData(filenames, ascendingOrder, filenames.size());
+        } else {
+            intData(filenames, ascendingOrder, filenames.size());
+        }
+
+        // Make program wait till user pushes the button
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void intData(ArrayList<String> filenames, boolean ascendingOrder, int fileNumber) {
         WorkFile file = new WorkFile();

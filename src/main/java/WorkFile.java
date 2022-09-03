@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 public class WorkFile {
 
@@ -23,7 +24,7 @@ public class WorkFile {
             while ((line = bufferedReader.readLine()) != null) {
                 if (isParsable(line)) {
                     lines.add(Integer.parseInt(line));
-                } else System.err.println("Line contains type of data that's not Integer");
+                } else MyLogger.getLogger().log(Level.WARNING, "Line contains type of data that's not Integer");
             }
             bufferedReader.close();
         } catch (IOException e) {
@@ -41,7 +42,7 @@ public class WorkFile {
             String line = null;
 
             while ((line = bufferedReader.readLine()) != null) {
-                if (line.contains(" ")) System.err.println("Line is invalid due to containing space");
+                if (line.contains(" ")) MyLogger.getLogger().log(Level.WARNING, "Line is invalid due to containing space");
                 else lines.add(line);
             }
             bufferedReader.close();
